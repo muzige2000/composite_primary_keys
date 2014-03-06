@@ -67,7 +67,7 @@ module CompositePrimaryKeys
 end
 
 ActiveRecord::Associations::AssociationScope.send(:include, CompositePrimaryKeys::Predicates)
-ActiveRecord::Associations::HasAndBelongsToManyAssociation.send(:include, CompositePrimaryKeys::Predicates)
+ActiveRecord::Associations::HasAndBelongsToManyAssociation.send(:include, CompositePrimaryKeys::Predicates) unless rails41?
 ActiveRecord::Associations::JoinDependency::JoinAssociation.send(:include, CompositePrimaryKeys::Predicates)
 ActiveRecord::Associations::Preloader::Association.send(:include, CompositePrimaryKeys::Predicates)
 ActiveRecord::Relation.send(:include, CompositePrimaryKeys::Predicates)
