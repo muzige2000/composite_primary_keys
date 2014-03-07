@@ -7,26 +7,12 @@ module ActiveRecord
     end
     
     def self.establish_connection(spec = ENV["DATABASE_URL"])
-<<<<<<< HEAD
-      puts "spec: #{spec.inspect}"
       spec = if rails41?
                ConnectionAdapters::ConnectionSpecification::Resolver.new(configurations).spec(Rails.env)
              else
                ConnectionAdapters::ConnectionSpecification::Resolver.new(spec, configurations).spec
              end
 
-      puts "spec: #{spec.inspect}"
-=======
-      spec = if rails41?
-               resolver = ConnectionAdapters::ConnectionSpecification::Resolver.new configurations
-               puts resolver.inspect
-               resolver.spec(Rails.env)
-             else
-               ConnectionAdapters::ConnectionSpecification::Resolver.new spec, configurations
-               resolver.spec
-             end
-
->>>>>>> 62aab9e83e73ea24e8eb9f6b93dc10d7101d61a7
       # CPK
       load_cpk_adapter(spec.config[:adapter])
       
