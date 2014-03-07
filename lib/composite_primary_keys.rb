@@ -30,6 +30,10 @@ unless defined?(ActiveRecord)
   require 'active_record'
 end
 
+def rails41?
+  ::ActiveRecord::VERSION::MAJOR >= 4 and ::ActiveRecord::VERSION::MINOR >= 1
+end
+
 # AR files we override
 require 'active_record/counter_cache'
 require 'active_record/fixtures'
@@ -39,14 +43,14 @@ require 'active_record/sanitization'
 
 require 'active_record/associations/association'
 require 'active_record/associations/association_scope'
-require 'active_record/associations/has_and_belongs_to_many_association'
+require 'active_record/associations/has_and_belongs_to_many_association' unless rails41?
 require 'active_record/associations/has_many_association'
 require 'active_record/associations/join_dependency'
 require 'active_record/associations/join_dependency/join_part'
 require 'active_record/associations/join_dependency/join_association'
 require 'active_record/associations/preloader/association'
 require 'active_record/associations/preloader/belongs_to'
-require 'active_record/associations/preloader/has_and_belongs_to_many'
+require 'active_record/associations/preloader/has_and_belongs_to_many'  unless rails41?
 
 require 'active_model/dirty'
 
